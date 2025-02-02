@@ -4,6 +4,9 @@
 sudo sysctl -w net.ipv4.ip_forward=1
 sudo sysctl -w net.ipv6.conf.all.forwarding=1
 
+echo "dog food"
+echo $TAILSCALE_AUTHKEY
+
 _term() {
     echo "Caught SIGTERM signal. Logging out and cleaning up."
     trap - TERM
