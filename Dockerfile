@@ -17,6 +17,17 @@ RUN echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf && \
     echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf && \
     sudo sysctl -p /etc/sysctl.conf
 
+# Check 
+# sysctl net.ipv4.ip_forward
+# sysctl net.ipv6.conf.all.forwarding
+
+# Set manually
+# sudo sysctl -w net.ipv4.ip_forward=1
+# sudo sysctl -w net.ipv6.conf.all.forwarding=1
+
+# Redis instance
+# ping 10.2.208.6
+
 # Copy Tailscale binaries
 COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscaled /app/tailscaled
 COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscale /app/tailscale
