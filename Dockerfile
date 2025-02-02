@@ -51,4 +51,4 @@ RUN chmod +x /app/start.sh
 USER tailscale-user
 
 
-CMD ["sudo", "/app/start.sh"]
+CMD ["sudo", "-E", "/app/start.sh"]
