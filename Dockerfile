@@ -13,6 +13,11 @@ RUN apt-get update \
 #    echo 'net.ipv6.conf.all.forwarding = 1' | tee -a /etc/sysctl.d/99-tailscale.conf && \
 #    sysctl -p /etc/sysctl.d/99-tailscale.conf
 
+
+#RUN echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf && \
+#    echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf && \
+#    sudo sysctl -p /etc/sysctl.conf
+
 # Check 
 # sysctl net.ipv4.ip_forward
 # sysctl net.ipv6.conf.all.forwarding
@@ -45,8 +50,5 @@ RUN chmod +x /app/start.sh
 # Switch to the non-root user
 USER tailscale-user
 
-RUN echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf && \
-    echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf && \
-    sudo sysctl -p /etc/sysctl.conf
 
 CMD ["sudo", "/app/start.sh"]
