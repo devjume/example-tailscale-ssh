@@ -1,8 +1,8 @@
 FROM ubuntu:latest
 WORKDIR /app 
 
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends && \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
     iptables bash curl sudo && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
