@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Enable IP forwarding (both IPv4 and IPv6)
+sudo sysctl -w net.ipv4.ip_forward=1
+sudo sysctl -w net.ipv6.conf.all.forwarding=1
+
 _term() {
     echo "Caught SIGTERM signal. Logging out and cleaning up."
     trap - TERM
