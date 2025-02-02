@@ -9,9 +9,13 @@ RUN apt-get update \
 
 # Enable IP forwarding for IPv4 and IPv6
 # https://tailscale.com/kb/1103/exit-nodes?tab=linux
-RUN echo 'net.ipv4.ip_forward = 1' | tee -a /etc/sysctl.d/99-tailscale.conf && \
-    echo 'net.ipv6.conf.all.forwarding = 1' | tee -a /etc/sysctl.d/99-tailscale.conf && \
-    sysctl -p /etc/sysctl.d/99-tailscale.conf
+#RUN echo 'net.ipv4.ip_forward = 1' | tee -a /etc/sysctl.d/99-tailscale.conf && \
+#    echo 'net.ipv6.conf.all.forwarding = 1' | tee -a /etc/sysctl.d/99-tailscale.conf && \
+#    sysctl -p /etc/sysctl.d/99-tailscale.conf
+
+RUN echo 'net.ipv4.ip_forward = 1' | sudo tee -a /etc/sysctl.conf && \
+    echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.conf && \
+    sudo sysctl -p /etc/sysctl.conf
 
 # Copy Tailscale binaries
 COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscaled /app/tailscaled
