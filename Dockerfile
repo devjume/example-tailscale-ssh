@@ -1,7 +1,9 @@
 FROM ubuntu:latest
+WORKDIR /app 
 
 RUN apt-get update && \
-    apt-get install --no-install-recommends -y iptables bash curl sudo && \
+    apt-get install -y --no-install-recommends && \
+    iptables bash curl sudo && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -11,10 +13,11 @@ RUN echo 'net.ipv4.ip_forward = 1' | tee -a /etc/sysctl.d/99-tailscale.conf && \
     echo 'net.ipv6.conf.all.forwarding = 1' | tee -a /etc/sysctl.d/99-tailscale.conf && \
     sysctl -p /etc/sysctl.d/99-tailscale.conf
 
-WORKDIR /app 
-
+# Copy Tailscale binaries
 COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscaled /app/tailscaled
 COPY --from=docker.io/tailscale/tailscale:stable /usr/local/bin/tailscale /app/tailscale
+
+# Create necessary directories for Tailscale
 RUN mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
 
 # Create a non-root user and grant sudo privileges
@@ -31,4 +34,4 @@ RUN chmod +x /app/start.sh
 # Switch to the non-root user
 USER tailscale-user
 
-CMD ["sudo", "/app/start.sh"]
+CMD ["/app/start.sh"]
