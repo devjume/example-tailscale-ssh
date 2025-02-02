@@ -34,4 +34,4 @@ RUN chmod +x /app/start.sh
 # Switch to the non-root user
 USER tailscale-user
 
-CMD ["/app/start.sh"]
+CMD ["sudo", "/app/start.sh"]
