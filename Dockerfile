@@ -3,7 +3,7 @@ WORKDIR /app
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    iptables bash curl sudo && \
+    iptables bash curl sudo iputils-ping && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
