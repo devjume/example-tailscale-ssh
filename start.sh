@@ -5,6 +5,8 @@ sudo sysctl -w net.ipv4.ip_forward=1
 sudo sysctl -w net.ipv6.conf.all.forwarding=1
 
 echo "dog food"
+echo $HELLO
+echo ${HELLO}
 echo $TAILSCALE_AUTHKEY
 
 _term() {
