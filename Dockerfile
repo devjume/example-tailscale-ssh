@@ -13,4 +13,4 @@ RUN mkdir -p /var/run/tailscale /var/cache/tailscale /var/lib/tailscale
 
 COPY start.sh /app/start.sh
 
-CMD ["/app/start.sh"]
+CMD ["sudo", "/app/start.sh"]
