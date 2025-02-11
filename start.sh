@@ -24,7 +24,7 @@ TAILSCALE_DAEMON_PID=$!
 #/app/tailscaled --tun=userspace-networking --socks5-server=localhost:1055 --outbound-http-proxy-listen=localhost:1055 &
 #/app/tailscale up -ssh --authkey=${TAILSCALE_AUTHKEY} --hostname="koyeb-${KOYEB_APP_NAME}-${KOYEB_SERVICE_NAME}"
 
-/app/tailscale up --ssh --authkey=${TAILSCALE_AUTHKEY} --hostname="koyeb-${KOYEB_APP_NAME}-${KOYEB_SERVICE_NAME}" --advertise-routes=10.3.0.0/16 --accept-dns=true 
+/app/tailscale up --ssh --authkey=${TAILSCALE_AUTHKEY} --hostname="koyeb-${KOYEB_APP_NAME}-${KOYEB_SERVICE_NAME}" --advertise-routes=10.3.0.0/16 --accept-dns=false 
 #/app/tailscale up --ssh --authkey=${TAILSCALE_AUTHKEY} --hostname=${HOSTNAME}
 
 wait
