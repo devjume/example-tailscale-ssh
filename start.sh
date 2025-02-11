@@ -17,7 +17,8 @@ trap _term TERM
 TAILSCALE_DAEMON_PID=$!
 
 #/app/tailscale up --ssh --authkey="${TAILSCALE_AUTHKEY}" --hostname="${KOYEB_APP_NAME}" --advertise-routes="10.2.208.6/32"
-/app/tailscale up --ssh --authkey=${TAILSCALE_AUTHKEY} --hostname="koyeb-${KOYEB_APP_NAME}-${KOYEB_SERVICE_NAME}" --advertise-exit-node
+#/app/tailscale up --ssh --authkey=${TAILSCALE_AUTHKEY} --hostname="koyeb-${KOYEB_APP_NAME}-${KOYEB_SERVICE_NAME}" --advertise-exit-node
+/app/tailscale up --ssh --authkey=${TAILSCALE_AUTHKEY} --hostname="koyeb-${KOYEB_APP_NAME}-${KOYEB_SERVICE_NAME}" --advertise-exit-node --accept-dns=false
 #/app/tailscale up --ssh --authkey=${TAILSCALE_AUTHKEY} --hostname=${HOSTNAME}
 
 wait
